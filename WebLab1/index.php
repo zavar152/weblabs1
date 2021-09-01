@@ -43,8 +43,15 @@ body {
 #result {
 	text-align: center;
 	font-size: 15pt;
+	max-height: 600px;
+	overflow: scroll;
 	padding: 2%;
 }
+
+#resFrame {
+    padding: 10px;
+}
+
 
 table {
 	margin: 0px auto;
@@ -124,8 +131,19 @@ table {
 			</form>
 		</div>
 
-		<div id="result">Результаты:</div>
-
+		<div id="resFrame">
+    		<div id="result"> 
+    		<?php
+    		$res = "Результаты:<br>";
+    		session_start();
+    		$table = $res."<table border=\"1\"> <tr> <th> X </th> <th> Y </th> <th> R </th> <th> Результат </th> </tr>";
+                foreach ($_SESSION['table'] as $out) {
+                    $table.="<tr> <th> $out[0] </th> <th> $out[1] </th> <th> $out[2] </th> <th> $out[3] </th> </tr>";
+                }
+                $table.="</table>";
+                echo $table;?> 
+            </div>
+		</div>
 
 		<div id="footer">
 			<span class="itmo">Национальный исследовательский университет
