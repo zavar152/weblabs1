@@ -35,6 +35,10 @@ body {
 	color: gray;
 }
 
+#footer:hover {
+    color: aqua;
+}
+
 #user {
 	font-size: 15pt;
 	padding: 2%;
@@ -98,6 +102,9 @@ table {
 			});
 		});
 	</script>
+	
+
+	
 	<div id="blocks">
 		<div id="head">
 			<span class="title">Абузов Ярослав Александрович, P3230 <br>Вариант:
@@ -106,7 +113,7 @@ table {
 		</div>
 
 		<div id="user">
-			<form action="handler.php" method="GET" id="calcForm">
+			<form name="inForm" action="handler.php" method="GET" id="calcForm">
 					Выберите X: 
 					<label class="x"><input type="checkbox" name="x[]" value="-3">-3</label> 
 					<label class="x"><input type="checkbox" name="x[]" value="-2">-2</label> 
@@ -127,7 +134,7 @@ table {
 					<label class="r"><input type="radio" name="r" value="2" required>2</label>
 					<label class="r"><input type="radio" name="r" value="2.5" required>2.5</label>
 					<label class="r"><input type="radio" name="r" value="3" required>3</label>
-					<br> <input type="submit" id="submit">
+					<br> <input type="submit" id="submit" onclick="return check()">
 			</form>
 		</div>
 
@@ -150,5 +157,52 @@ table {
 				ИТМО, 2021г</span>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	function check() {
+		var r = document.forms["inForm"]["r"].value;
+		var x_ = document.forms["inForm"]['x[]'];
+		var y = document.forms["inForm"]["y"].value;
+
+		var x = "";
+		var c = 0;
+		for(let i = 0; i < 9; i++)
+		{
+			if(x_.item(i).checked)
+			{
+				x = x_.item(i).value;
+				c++;
+			}
+				
+		}
+			
+		if (c == 1 && !isNaN(x) && (x == -3 || x == -2 || x == -1 || x == 0 || x == 1 || x == 2 || x == 3 || x == 4 || x == 5)) {
+
+		}
+		else {
+			alert("Выберите одно значение X");
+			return false;
+		} 
+
+		if (!isNaN(y) && (y >= -5 && y <= 3)) {
+
+		}
+		else {
+			alert("Введите корректное значение Y");
+			return false;
+		}
+
+		if (!isNaN(r) && (r == 1 || r == 1.5 || r == 2 || r == 2.5 || r == 3)) {
+
+		}
+		else {
+			alert("Выберите корректное значение R");
+			return false;
+		}
+		
+		return true;
+	}
+	</script> 
+	
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
+date_default_timezone_set('Europe/Moscow');
 $start = microtime(true);
-
 session_start();
 $res = "Результаты:<br>";
 $err = "Ошибка:<br>";
